@@ -17,7 +17,6 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    @article = Article.find(params[:id])
   end
 
   # POST /articles or /articles.json
@@ -33,7 +32,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update(article_params)
       flash[:notice] = "Article was successfully updated"
       redirect_to article_path(@article)
@@ -44,7 +42,6 @@ class ArticlesController < ApplicationController
 
 
   def show
-    @article = Article.find(params[:id])
   end
 
   # PATCH/PUT /articles/1 or /articles/1.json
@@ -62,7 +59,6 @@ class ArticlesController < ApplicationController
 
   # DELETE /articles/1 or /articles/1.json
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     flash[:notice] = "Article was successfully deleted"
     redirect_to articles_path
@@ -74,7 +70,7 @@ class ArticlesController < ApplicationController
     def set_article
       @article = Article.find(params[:id])
     end
-    
+
     # Only allow a list of trusted parameters through.
     def article_params
       params.require(:article).permit(:title, :description)
